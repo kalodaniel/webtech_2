@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<div class="center container">
+    <h5 *ngIf="!getParamID">Új gép felvétele</h5>
+    <h5 *ngIf="getParamID">Gép módosítása</h5>
+    <h5 class="red-text">{{errormsg}}</h5>
+    <h5 class="green-text">{{successmsg}}</h5>
+    <form *ngIf="!getParamID" class="white row" [formGroup]="machineCreateForm">
+        <div class="col s6">
+           <input type="text" class="form-control" formControlName="machineName" placeholder="Gép neve">
+        </div>
+        <div class="col s3">
+           <input type="date" class="form-control" formControlName="acquisition" placeholder="Beszerzés">
+        </div>
+        <div class="col s3">
+           <input type="text" class="form-control" formControlName="manufacturer" placeholder="Gyártó">
+        </div>
+        <div class="col s6">
+            <input type="number" class="form-control" formControlName="chassisNumber" placeholder="Sorozatszám">
+         </div>
+   
+        <div class="center" *ngIf="!getParamID" (click)="machineSubmit()">
+            <button class="btn deep-orange">Létrehoz</button>
+        </div>
+        <div class="center" *ngIf="getParamID" (click)="machineUpdate()">
+            <button class="btn deep-orange">Módosít</button>
+        </div>
+    </form>
+    <form *ngIf="getParamID" class="white row" [formGroup]="machineUpdateForm">
+        <div class="col s6">
+           <input type="text" class="form-control" formControlName="machineName" placeholder="Gép neve">
+        </div>
+        <div class="col s3">
+           <input type="date" class="form-control" formControlName="acquisition" placeholder="Beszerzés">
+        </div>
+        <div class="col s3">
+           <input type="text" class="form-control" formControlName="manufacturer" placeholder="Gyártó">
+        </div>
+        <div class="col s6">
+            <select formControlName="state" class="browser-default">
+                <option value="" disabled selected>Válaszd ki az állapotot</option>
+                <option value="Selejtezett">Selejtezett</option>
+              </select>
+        </div>
+        <div class="col s6">
+            <input type="number" class="form-control" formControlName="chassisNumber" placeholder="Sorozatszám">
+         </div>
+   
+        <div class="center" *ngIf="!getParamID" (click)="machineSubmit()">
+            <button class="btn deep-orange">Létrehoz</button>
+        </div>
+        <div class="center" *ngIf="getParamID" (click)="machineUpdate()">
+            <button class="btn deep-orange">Módosít</button>
+        </div>
+    </form>
+</div>
